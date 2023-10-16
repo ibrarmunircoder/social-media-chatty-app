@@ -9,9 +9,9 @@ import { Server } from 'socket.io';
 import { createClient } from 'redis';
 import { createAdapter } from '@socket.io/redis-adapter';
 import 'express-async-errors';
-import { config } from './config';
-import applicationRoutes from './routes';
-import { CustomError, NotFoundError } from './shared/globals/helpers/error-handler';
+import { config } from '@root/config';
+import applicationRoutes from '@root/routes';
+import { CustomError, NotFoundError } from '@globals/helpers/error-handler';
 import HTTP_STATUS from 'http-status-codes';
 import bunyan from 'bunyan';
 
@@ -73,7 +73,8 @@ export class ChattyServer {
     app.all('*', (req: Request) => {
       throw new NotFoundError(`${req.originalUrl} not found`);
     });
-    app.use((error: Error, _req: Request, res: Response, next: NextFunction) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    app.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
       log.error(error);
       if (error instanceof CustomError) {
         return res.status(error.statusCode).json({
