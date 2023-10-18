@@ -31,6 +31,7 @@ export interface IAuthDocument extends Document {
   passwordResetExpires?: number | string;
   comparePassword(password: string): Promise<boolean>;
   hashPassword(password: string): Promise<string>;
+  createPasswordResetToken(): string;
 }
 
 export interface IAuthModel extends Model<IAuthDocument> {

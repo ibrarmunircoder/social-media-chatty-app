@@ -7,8 +7,18 @@ class AuthService {
     await AuthModel.create(data);
   }
 
+  public async getAuthUserByToken(token: string): Promise<IAuthDocument | null> {
+    const query = { passwordResetToken: token, passwordResetExpires: { $gt: Date.now() } };
+    const authUser = await AuthModel.findOne(query);
+    return authUser;
+  }
   public async getAuthUserByUsername(username: string): Promise<IAuthDocument | null> {
     const query = { username: Helpers.firstLetterUppercase(username) };
+    const authUser = await AuthModel.findOne(query);
+    return authUser;
+  }
+  public async getAuthUserByEmail(email: string): Promise<IAuthDocument | null> {
+    const query = { email: email.toLowerCase() };
     const authUser = await AuthModel.findOne(query);
     return authUser;
   }

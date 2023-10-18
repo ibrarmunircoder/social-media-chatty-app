@@ -6,7 +6,7 @@ export const loginSchema = z.object({
       .string({
         required_error: 'Password is a required field'
       })
-      .min(1, 'Password is required')
+      .min(1, 'Password is a required field')
       .trim(),
     username: z
       .string({
