@@ -29,6 +29,7 @@ export const signupSchema = z.object({
       .string({
         required_error: 'Email is a required field'
       })
+      .min(1, 'Email is a required field')
       .email('Email must be valid')
   })
 });

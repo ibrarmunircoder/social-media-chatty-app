@@ -1,6 +1,7 @@
 import { hash, compare } from 'bcryptjs';
 import { IAuthModel, IAuthDocument } from '@auth/interfaces/auth.interface';
 import { model, Schema } from 'mongoose';
+import crypto from 'crypto';
 
 const SALT_ROUND = 10;
 
@@ -42,6 +43,16 @@ authSchema.methods.comparePassword = async function (password: string): Promise<
 
 authSchema.methods.hashPassword = async function (password: string): Promise<string> {
   return hash(password, SALT_ROUND);
+};
+
+authSchema.methods.createPasswordResetToken = function () {
+  const resetToken = crypto.randomBytes(32).toString('hex');
+
+  this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+
+  this.passwordResetExpires = Date.now() + 60 * 60 * 1000; // 1 hour expires
+
+  return resetToken;
 };
 
 const AuthModel: IAuthModel = model<IAuthDocument, IAuthModel>('Auth', authSchema, 'Auth');

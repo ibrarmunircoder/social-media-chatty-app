@@ -26,8 +26,18 @@ export const passwordSchema = z.object({
         })
         .min(1, 'Password is a required field')
     })
-    .refine(({ password, confirmPassword }) => password !== confirmPassword, {
+    .refine(({ password, confirmPassword }) => password === confirmPassword, {
       message: 'Passwords should be matched',
       path: ['confirmPassword']
-    })
+    }),
+  params: z.object({
+    token: z
+      .string({
+        required_error: 'Invalid Token'
+      })
+      .min(1, 'Invalid Token')
+  })
 });
+
+export type EmailInput = z.infer<typeof emailSchema>['body'];
+export type PasswordInput = z.infer<typeof passwordSchema>['body'];

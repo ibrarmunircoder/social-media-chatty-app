@@ -39,6 +39,12 @@ npm install bull --save
 
 npm i @bull-board/express
 
+npm i nodemailer @sendgrid/mail ejs
+
+npm i -D jest
+
+npm i -D ts-jest
+
 ## Redis List Commands
 
 1- LPUSH (prepends one or multiple elements to a list)

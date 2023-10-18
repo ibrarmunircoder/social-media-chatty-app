@@ -19,7 +19,7 @@ export class SignInController {
     }
     const passwordMatch: boolean = await existingAuthUser.comparePassword(password);
     if (!passwordMatch) {
-      throw new BadRequestError('Invalid username and password');
+      throw new BadRequestError('Invalid username or password');
     }
 
     const user: IUserDocument = await userService.getUserByAuthId(`${existingAuthUser._id}`);
