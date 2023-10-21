@@ -146,19 +146,19 @@ describe('SignUp', () => {
     });
   });
 
-  it('should throw an error if password length is greater than maximum length', () => {
+  it('should throw an error if password length is greater than maximum length', async () => {
     const req: Request = authMockRequest(
       {},
       {
         username: 'Manny',
         email: 'manny@test.com',
-        password: 'mathematics1',
+        password: 'mathematics1gddhfgdhfg',
         avatarColor: 'red',
         avatarImage: 'data:text/plain;base64,SGVsbG8sIFdvcmxkIQ=='
       }
     ) as Request;
     const res: Response = authMockResponse();
-    SignUpController.signUp(req, res).catch((error: CustomError) => {
+    await SignUpController.signUp(req, res).catch((error: CustomError) => {
       expect(error.statusCode).toEqual(400);
       expect(error.serializeErrors()[0].message).toEqual('Password is too long - should be max 20 chars');
     });
