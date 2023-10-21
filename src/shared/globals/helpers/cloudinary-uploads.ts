@@ -2,9 +2,9 @@ import cloudinary, { UploadApiErrorResponse, UploadApiResponse } from 'cloudinar
 
 export function uploads(
   file: string,
-  public_id: string,
-  overwrite: boolean,
-  invalidate: boolean
+  public_id?: string,
+  overwrite?: boolean,
+  invalidate?: boolean
 ): Promise<UploadApiResponse | UploadApiErrorResponse | undefined> {
   return new Promise((resolve) => {
     cloudinary.v2.uploader.upload(

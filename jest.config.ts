@@ -33,7 +33,7 @@ const config: Config = {
     '@chat/(.*)': ['<rootDir>/src/features/chat/$1'],
     '@globals/(.*)': ['<rootDir>/src/shared/globals/$1'],
     '@services/(.*)': ['<rootDir>/src/shared/services/$1'],
-    '@socket/(.*)': ['<rootDir>/src/shared/sockets/$1'],
+    '@sockets/(.*)': ['<rootDir>/src/shared/sockets/$1'],
     '@workers/(.*)': ['<rootDir>/src/shared/workers/$1'],
     '@root/(.*)': ['<rootDir>/src/$1']
   }
