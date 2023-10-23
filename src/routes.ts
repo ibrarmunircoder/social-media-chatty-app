@@ -1,5 +1,6 @@
 import { authRoutes } from '@auth/routes/authRoutes';
 import { postRoutes } from '@post/routes/post.routes';
+import { reactionRoutes } from '@reactions/routes/reaction.route';
 import { serverAdapter } from '@services/queues/base.queue';
 import { Application } from 'express';
 
@@ -10,6 +11,7 @@ export default (app: Application) => {
     app.use('/queues', serverAdapter.getRouter());
     app.use(BASE_PATH, authRoutes.routes());
     app.use(BASE_PATH, postRoutes.routes());
+    app.use(BASE_PATH, reactionRoutes.routes());
   };
   routes();
 };

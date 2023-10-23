@@ -1,6 +1,4 @@
-import type { Config } from 'jest';
-
-const config: Config = {
+module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   verbose: true,
@@ -25,7 +23,7 @@ const config: Config = {
     '@auth/(.*)': ['<rootDir>/src/features/auth/$1'],
     '@user/(.*)': ['<rootDir>/src/features/user/$1'],
     '@post/(.*)': ['<rootDir>/src/features/post/$1'],
-    '@reaction/(.*)': ['<rootDir>/src/features/reactions/$1'],
+    '@reactions/(.*)': ['<rootDir>/src/features/reactions/$1'],
     '@comment/(.*)': ['<rootDir>/src/features/comments/$1'],
     '@follower/(.*)': ['<rootDir>/src/features/followers/$1'],
     '@notification/(.*)': ['<rootDir>/src/features/notifications/$1'],
@@ -38,5 +36,3 @@ const config: Config = {
     '@root/(.*)': ['<rootDir>/src/$1']
   }
 };
-
-export default config;
