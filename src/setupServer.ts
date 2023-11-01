@@ -15,6 +15,8 @@ import { CustomError, NotFoundError } from '@globals/helpers/error-handler';
 import HTTP_STATUS from 'http-status-codes';
 import bunyan from 'bunyan';
 import { SocketIOPostHandler } from '@sockets/post';
+import { SocketIOFollowerHandler } from '@sockets/follower';
+import { SocketIOUserHandler } from '@sockets/user';
 
 const SERVER_PORT = process.env.SERVER_PORT || 5000;
 const log: bunyan = config.createLogger('server');
@@ -123,6 +125,10 @@ export class ChattyServer {
 
   private socketIOConnections(io: Server): void {
     const postSocketHandler: SocketIOPostHandler = new SocketIOPostHandler(io);
+    const followerSocketHandler: SocketIOFollowerHandler = new SocketIOFollowerHandler(io);
+    const socketIOUserHandler: SocketIOUserHandler = new SocketIOUserHandler(io);
     postSocketHandler.listen();
+    followerSocketHandler.listen();
+    socketIOUserHandler.listen();
   }
 }

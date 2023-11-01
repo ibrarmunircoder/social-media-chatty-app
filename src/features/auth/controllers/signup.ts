@@ -49,10 +49,10 @@ export class SignUpController {
     await userCache.saveUserToCache(`${userObjectId}`, uId, userDataForCache);
 
     // Add to database
-    omit(userDataForCache, ['uId', 'email', 'username', 'avatarColor', 'password']);
+    const userDataCacheResult = omit(userDataForCache, ['uId', 'email', 'username', 'avatarColor', 'password']);
 
     authQueue.addAuthUserJob('addAuthUserToDb', { value: signupDataPayload });
-    userQueue.addUserJob('addUserToDb', { value: userDataForCache });
+    userQueue.addUserJob('addUserToDb', { value: userDataCacheResult });
 
     const token: string = SignUpController.signToken(signupDataPayload, userObjectId);
     req.session = { jwt: token };

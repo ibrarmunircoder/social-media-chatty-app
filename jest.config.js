@@ -25,7 +25,7 @@ module.exports = {
     '@post/(.*)': ['<rootDir>/src/features/post/$1'],
     '@reactions/(.*)': ['<rootDir>/src/features/reactions/$1'],
     '@comments/(.*)': ['<rootDir>/src/features/comments/$1'],
-    '@follower/(.*)': ['<rootDir>/src/features/followers/$1'],
+    '@followers/(.*)': ['<rootDir>/src/features/followers/$1'],
     '@notification/(.*)': ['<rootDir>/src/features/notifications/$1'],
     '@image/(.*)': ['<rootDir>/src/features/images/$1'],
     '@chat/(.*)': ['<rootDir>/src/features/chat/$1'],
