@@ -15,7 +15,7 @@ jest.useFakeTimers();
 jest.mock('@services/queues/base.queue');
 jest.mock('@services/redis/user.cache');
 jest.mock('@sockets/user');
-jest.mock('@globals/helpers/cloudinary-upload');
+jest.mock('@globals/helpers/cloudinary-uploads');
 
 Object.defineProperties(imageServer, {
   socketIOImageObject: {

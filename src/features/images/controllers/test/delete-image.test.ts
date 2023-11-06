@@ -9,8 +9,8 @@ import { imageService } from '@services/db/image.service';
 import { UserCache } from '@services/redis/user.cache';
 
 jest.useFakeTimers();
-jest.mock('@service/queues/base.queue');
-jest.mock('@service/redis/user.cache');
+jest.mock('@services/queues/base.queue');
+jest.mock('@services/redis/user.cache');
 
 Object.defineProperties(imageServer, {
   socketIOImageObject: {
