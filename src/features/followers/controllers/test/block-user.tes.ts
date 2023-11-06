@@ -6,8 +6,8 @@ import { FollowerCache } from '@services/redis/follower.cache';
 import { blockedUserQueue } from '@services/queues/block.queue';
 
 jest.useFakeTimers();
-jest.mock('@service/queues/base.queue');
-jest.mock('@service/redis/follower.cache');
+jest.mock('@services/queues/base.queue');
+jest.mock('@services/redis/follower.cache');
 
 describe('AddUser', () => {
   beforeEach(() => {

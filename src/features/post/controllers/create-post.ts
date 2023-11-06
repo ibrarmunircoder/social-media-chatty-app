@@ -9,6 +9,7 @@ import { socketIOPostObject } from '@sockets/post';
 import { postQueue } from '@services/queues/post.queue';
 import { uploads } from '@globals/helpers/cloudinary-uploads';
 import { BadRequestError } from '@globals/helpers/error-handler';
+import { imageQueue } from '@services/queues/image.queue';
 
 const postCache: PostCache = new PostCache();
 
@@ -98,6 +99,11 @@ export class CreatePostController {
     });
     socketIOPostObject.emit('add post', postDocumentPayload);
     postQueue.addPostJob('addPostToDb', { key: req.currentUser!.userId, value: postDocumentPayload });
+    imageQueue.addImageJob('addImageToDB', {
+      key: `${req.currentUser!.userId}`,
+      imgId: result.public_id,
+      imgVersion: result.version.toString()
+    });
     res.status(HTTP_STATUS.CREATED).json({ message: 'Post created with image successfully' });
   }
 }

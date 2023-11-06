@@ -17,6 +17,8 @@ import bunyan from 'bunyan';
 import { SocketIOPostHandler } from '@sockets/post';
 import { SocketIOFollowerHandler } from '@sockets/follower';
 import { SocketIOUserHandler } from '@sockets/user';
+import { SocketIONotificationHandler } from '@sockets/notification';
+import { SocketIOImageHandler } from '@sockets/image';
 
 const SERVER_PORT = process.env.SERVER_PORT || 5000;
 const log: bunyan = config.createLogger('server');
@@ -127,8 +129,12 @@ export class ChattyServer {
     const postSocketHandler: SocketIOPostHandler = new SocketIOPostHandler(io);
     const followerSocketHandler: SocketIOFollowerHandler = new SocketIOFollowerHandler(io);
     const socketIOUserHandler: SocketIOUserHandler = new SocketIOUserHandler(io);
+    const socketIONotificationHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
+    const socketIOImageHandler: SocketIOImageHandler = new SocketIOImageHandler();
     postSocketHandler.listen();
     followerSocketHandler.listen();
     socketIOUserHandler.listen();
+    socketIONotificationHandler.listen(io);
+    socketIOImageHandler.listen(io);
   }
 }

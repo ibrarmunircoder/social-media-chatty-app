@@ -10,12 +10,22 @@ import { IPostJobData } from '@post/interfaces/post.interface';
 import { IReactionJob } from '@reactions/interfaces/reaction.interface';
 import { ICommentJob } from '@comments/interfaces/comment.interface';
 import { IFollowerJobData } from '@followers/interfaces/follower.interface';
+import { INotificationJobData } from '@notifications/interfaces/notification.interface';
+import { IFileImageJobData } from '@images/interfaces/image.interface';
 
 let bullAdapters: BullAdapter[] = [];
 
 export let serverAdapter: ExpressAdapter;
 
-type IBaseJobData = IAuthJob | IEmailJob | IPostJobData | IReactionJob | ICommentJob | IFollowerJobData;
+type IBaseJobData =
+  | IAuthJob
+  | IEmailJob
+  | IPostJobData
+  | IReactionJob
+  | ICommentJob
+  | IFollowerJobData
+  | INotificationJobData
+  | IFileImageJobData;
 
 export abstract class BaseQueue {
   queue: Queue.Queue;

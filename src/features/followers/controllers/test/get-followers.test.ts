@@ -8,8 +8,8 @@ import { followerService } from '@services/db/follower.service';
 import { existingUserTwo } from '@root/mocks/user.mock';
 
 jest.useFakeTimers();
-jest.mock('@service/queues/base.queue');
-jest.mock('@service/redis/follower.cache');
+jest.mock('@services/queues/base.queue');
+jest.mock('@services/redis/follower.cache');
 
 describe('Get', () => {
   beforeEach(() => {
