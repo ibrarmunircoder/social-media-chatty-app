@@ -25,6 +25,7 @@
       "@user/*": ["src/features/user/*"],
       "@auth/*": ["src/features/auth/*"],
       "@comments/*": ["src/features/comments/*"],
+      "@chat/*": ["src/features/chat/*"],
       "@followers/*": ["src/features/followers/*"],
       "@notifications/*": ["src/features/notifications/*"],
       "@images/*": ["src/features/images/*"],
