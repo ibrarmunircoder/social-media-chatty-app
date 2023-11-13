@@ -1,4 +1,5 @@
 import { authRoutes } from '@auth/routes/authRoutes';
+import { chatRoutes } from '@chat/routes/chat.routes';
 import { commentRoutes } from '@comments/routes/comment.route';
 import { followerRoutes } from '@followers/routes/follower-user';
 import { imageRoutes } from '@images/routes/image.routes';
@@ -20,6 +21,7 @@ export default (app: Application) => {
     app.use(BASE_PATH, followerRoutes.routes());
     app.use(BASE_PATH, notificationRoutes.routes());
     app.use(BASE_PATH, imageRoutes.routes());
+    app.use(BASE_PATH, chatRoutes.routes());
   };
   routes();
 };
