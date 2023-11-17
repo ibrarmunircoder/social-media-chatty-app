@@ -20,6 +20,7 @@ import { SocketIOUserHandler } from '@sockets/user';
 import { SocketIONotificationHandler } from '@sockets/notification';
 import { SocketIOImageHandler } from '@sockets/image';
 import { SocketIOChatHandler } from '@sockets/chat';
+import apiStats from 'swagger-stats';
 
 const SERVER_PORT = process.env.SERVER_PORT || 5000;
 const log: bunyan = config.createLogger('server');
@@ -34,6 +35,7 @@ export class ChattyServer {
   public start(): void {
     this.securityMiddleware(this.app);
     this.standardMiddleware(this.app);
+    this.apiMonitoring(this.app);
     this.routesMiddleware(this.app);
     this.globalErrorHandler(this.app);
     this.startServer(this.app);
@@ -69,6 +71,14 @@ export class ChattyServer {
       })
     );
     app.use(urlencoded({ extended: true, limit: '50mb' }));
+  }
+
+  private apiMonitoring(app: Application): void {
+    app.use(
+      apiStats.getMiddleware({
+        uriPath: '/api-monitoring'
+      })
+    );
   }
 
   private routesMiddleware(app: Application): void {

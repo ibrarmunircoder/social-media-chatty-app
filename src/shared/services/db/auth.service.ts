@@ -12,9 +12,9 @@ class AuthService {
     const authUser = await AuthModel.findOne(query);
     return authUser;
   }
-  public async getAuthUserByUsername(username: string): Promise<IAuthDocument | null> {
+  public async getAuthUserByUsername(username: string): Promise<IAuthDocument> {
     const query = { username: Helpers.firstLetterUppercase(username) };
-    const authUser = await AuthModel.findOne(query);
+    const authUser: IAuthDocument = (await AuthModel.findOne(query)) as IAuthDocument;
     return authUser;
   }
   public async getAuthUserByEmail(email: string): Promise<IAuthDocument | null> {
