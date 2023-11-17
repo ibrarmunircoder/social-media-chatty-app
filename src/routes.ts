@@ -7,6 +7,8 @@ import { notificationRoutes } from '@notifications/routes/notification';
 import { postRoutes } from '@post/routes/post.routes';
 import { reactionRoutes } from '@reactions/routes/reaction.route';
 import { serverAdapter } from '@services/queues/base.queue';
+import { healthRoutes } from '@user/routes/health.routes';
+import { userRoutes } from '@user/routes/user.routes';
 import { Application } from 'express';
 
 const BASE_PATH = '/api/v1';
@@ -14,6 +16,10 @@ const BASE_PATH = '/api/v1';
 export default (app: Application) => {
   const routes = () => {
     app.use('/queues', serverAdapter.getRouter());
+    app.use('', healthRoutes.health());
+    app.use('', healthRoutes.env());
+    app.use('', healthRoutes.instance());
+    app.use('', healthRoutes.fiboRoutes());
     app.use(BASE_PATH, authRoutes.routes());
     app.use(BASE_PATH, postRoutes.routes());
     app.use(BASE_PATH, reactionRoutes.routes());
@@ -22,6 +28,7 @@ export default (app: Application) => {
     app.use(BASE_PATH, notificationRoutes.routes());
     app.use(BASE_PATH, imageRoutes.routes());
     app.use(BASE_PATH, chatRoutes.routes());
+    app.use(BASE_PATH, userRoutes.routes());
   };
   routes();
 };
