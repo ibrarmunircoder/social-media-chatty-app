@@ -38,11 +38,11 @@ fi
 
 cd /home/ec2-user
 
-git clone -b develop https://github.com/ibrarmunircoder/social-media-chatty-app.git # replace this github url with your url of your own project
+git clone -b staging https://github.com/ibrarmunircoder/social-media-chatty-app.git # replace this github url with your url of your own project
 cd social-media-chatty-app # set your project name
 npm install
-aws s3 sync s3://chattyapp-env-files/develop . # update with your s3 bucket
+aws s3 sync s3://chattyapp-env-files/staging . # update with your s3 bucket
 unzip env-file.zip
-cp .env.develop .env
+cp .env.staging .env
 npm run build
 npm run start
