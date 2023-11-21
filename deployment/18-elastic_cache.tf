@@ -20,13 +20,13 @@ resource "aws_elasticache_replication_group" "chatapp_redis_cluster" {
   ]
 
 
-  # provisioner "local-exec" {
-  #   command = file("./userdata/update-env-file.sh")
+  provisioner "local-exec" {
+    command = file("./userdata/update-env-file.sh")
 
-  #   environment = {
-  #     ELASTICACHE_ENDPOINT = self.primary_endpoint_address
-  #   }
-  # }
+    environment = {
+      ELASTICACHE_ENDPOINT = self.primary_endpoint_address
+    }
+  }
 
   tags = merge(
     local.common_tags,
