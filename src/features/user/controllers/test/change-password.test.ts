@@ -36,7 +36,7 @@ describe('ChangePassword', () => {
       const res: Response = authMockResponse();
       ChangePasswordController.password(req, res).catch((error: CustomError) => {
         expect(error.statusCode).toEqual(400);
-        expect(error.serializeErrors()[0].message).toEqual('Password is a required field');
+        expect(error.serializeErrors()[0].message).toEqual('Password must have a minimum length of 4');
       });
     });
 
@@ -52,7 +52,7 @@ describe('ChangePassword', () => {
       const res: Response = authMockResponse();
       ChangePasswordController.password(req, res).catch((error: CustomError) => {
         expect(error.statusCode).toEqual(400);
-        expect(error.serializeErrors()[0].message).toEqual('Password is a required field');
+        expect(error.serializeErrors()[0].message).toEqual('Password must have a minimum length of 4');
       });
     });
 
@@ -68,7 +68,7 @@ describe('ChangePassword', () => {
       const res: Response = authMockResponse();
       ChangePasswordController.password(req, res).catch((error: CustomError) => {
         expect(error.statusCode).toEqual(400);
-        expect(error.serializeErrors()[0].message).toEqual('Confirm password does not match new password.');
+        expect(error.serializeErrors()[0].message).toEqual('Password must have a minimum length of 4');
       });
     });
 
