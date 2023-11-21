@@ -2,11 +2,12 @@ import { z } from 'zod';
 
 export const signupSchema = z.object({
   body: z.object({
-    username: z.string({
-      required_error: 'Username is a required field'
-    }),
-    // .min(4, 'Invalid username')
-    // .max(8, 'Invalid username'),
+    username: z
+      .string({
+        required_error: 'Username is a required field'
+      })
+      .min(4, 'Invalid username')
+      .max(8, 'Invalid username'),
     password: z
       .string({
         required_error: 'Password is a required field'
