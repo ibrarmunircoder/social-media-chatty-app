@@ -1,6 +1,6 @@
 orbs:
   codecov: codecov/codecov@3.2.5
-  aws-cli: circleci/aws-cli@4.0.0
+  aws-cli: circleci/aws-cli@4.1.2
   slack: circleci/slack@4.12.5
 
 version: 2.1
@@ -14,6 +14,10 @@ executors:
   terraform-executor:
     docker:
       - image: hashicorp/terraform:latest
+  slack-executor:
+    docker:
+      - image: 'cibuilds/base:latest'
+    resource_class: small
 
 aliases:
   - &show-current-branch-name
@@ -173,7 +177,7 @@ jobs:
       - checkout
       - *show-current-branch-name
       - aws-cli/setup:
-          profile-name: default
+          profile_name: default
       - run:
           name: Terraform plan
           command: |
@@ -194,7 +198,7 @@ jobs:
     steps:
       - checkout
       - aws-cli/setup:
-          profile-name: default
+          profile_name: default
       - *zip-project
       - run:
           name: Upload project to S3
@@ -207,7 +211,7 @@ jobs:
     steps:
       - checkout
       - aws-cli/setup:
-          profile-name: default
+          profile_name: default
       - run:
           name: Deploy changes with AWS code deploy
           command: |
