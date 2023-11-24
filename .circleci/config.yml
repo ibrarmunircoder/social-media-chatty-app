@@ -48,7 +48,7 @@ aliases:
   - &notify-on-fail
     slack/notify:
       event: fail
-      channel: 'D04T5MTNR7H'
+      channel: 'C066T3EFF9D'
       template: ''
       custom: |
         {
@@ -233,7 +233,7 @@ jobs:
       - run: echo "Slack notification"
       - slack/notify:
           event: 'always'
-          channel: 'D04T5MTNR7H'
+          channel: 'C066T3EFF9D'
           template: ''
           custom: |
             {
