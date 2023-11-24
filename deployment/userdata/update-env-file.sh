@@ -8,8 +8,8 @@ function program_is_installed {
 }
 
 if [ $(program_is_installed zip) == 0 ]; then
-  sudo apt update -y
-  sudo apt install zip -y
+  apk update
+  apk add zip
 fi
 
 
